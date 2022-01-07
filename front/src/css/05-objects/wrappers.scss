@@ -1,0 +1,12 @@
+.container {
+    width: unquote(100 - (200 / 12) + '%'); // 2 colonnes de marge
+    margin: auto;
+}
+
+.logo {
+    max-height: 124px;
+}
+
+.icon {
+    max-height: 64px;
+}

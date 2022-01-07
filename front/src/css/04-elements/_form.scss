@@ -1,0 +1,7 @@
+form {
+    input {
+        &[type='search'] {
+            border-bottom: solid 2px $secondary-color;
+        }
+    }
+}
