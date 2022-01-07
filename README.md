@@ -7,6 +7,6 @@ Un blog de recette de desserts
 - [images](https://unsplash.com/)
 
 ## To-do
-- [X] visuel
-- [ ] front
+- [X] Réaliser le visuel sur figma
+- [ ] Intégrer la maquette en HTML - CSS - JS
 - [ ] back
