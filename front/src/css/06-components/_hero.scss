@@ -1,0 +1,51 @@
+#hero {
+    @extend .container;
+    background-color: $primary-color;
+    height: 640px;
+    margin: ratio-space(8px) auto;
+    border-radius: 30px;
+    display: flex;
+    color: $white;
+
+    figure {
+        width: 50%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 0%;
+        }
+    }
+
+    article {
+        width: 50%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        padding: ratio-space(3px);
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 85%;
+
+            h1 {
+                margin-bottom: ratio-space(5px);
+            }
+
+            p {
+                font-size: 24px;
+                font-weight: 600;
+            }
+        }
+
+        .btn {
+            align-self: end;
+        }
+    }
+}

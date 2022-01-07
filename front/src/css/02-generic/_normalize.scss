@@ -16,8 +16,14 @@ q:after {
     content: ' »';
 }
 
-*, html, body {
+* {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
     box-sizing: border-box;
+}
+
+html, body {
     scroll-behavior: smooth;
     font-family: $font-primary;
     font-size: $font-size;
