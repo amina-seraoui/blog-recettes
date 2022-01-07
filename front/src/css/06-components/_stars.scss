@@ -1,0 +1,14 @@
+.stars {
+    @extend %flex;
+
+    .star {
+        width: 21px;
+        height: 21px;
+
+        background: url(../img/star-grey.svg) no-repeat center;
+        
+        &.completed {
+            background: url(../img/star-pink.svg) no-repeat center;
+        }
+    }
+}

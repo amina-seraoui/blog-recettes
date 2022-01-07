@@ -1,0 +1,48 @@
+.recipe-cards {
+    @extend %flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: ratio-space(1px);
+    
+    .recipe-card {
+        max-width: 326px;
+        width: clamp(unquote((100/3) + '%'), 100%, 326px);
+        margin-bottom: ratio-space(8px);
+        
+        .recipe-card-image {
+            img {
+                border-radius: 5px;
+                display: block;
+                width: 100%;
+            }
+        }
+
+        .recipe-card-content {
+            margin: 0 ratio-space(1px);
+            @extend %flex;
+            flex-direction: column;
+
+            .badge {
+                align-self: end;
+                margin: ratio-space(1px) 0;
+            }
+
+            h3 {
+                margin-bottom: ratio-space(1px);
+            }
+            
+            .stars {
+                margin-bottom: ratio-space(2px);
+            }
+
+            .recipe-card-link {
+                @extend .btn;
+
+                border: solid 1px $thirdary-color;
+                align-self: end;
+                font-size: 14px;
+            }
+        }
+
+    }
+}

@@ -1,0 +1,17 @@
+.badge {
+    padding: 1px ratio-space(1px);
+    border-radius: 25px;
+    display: inline-block;
+    font-size: 14px;
+    
+    &.easy {
+        background-color: $light-blue;
+    }
+    &.medium {
+        background-color: $light-orange;
+    }
+    &.hard {
+        background-color: $mallow;
+        color: $white;
+    }
+}

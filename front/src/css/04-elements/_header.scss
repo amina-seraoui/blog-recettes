@@ -1,15 +1,15 @@
 header {
     padding: ratio-space(3px);
-    display: flex;
+    @extend %flex;
     justify-content: space-between;
     width: 100%;
 
     .right {
-        display: flex;
+        @extend %flex;
         justify-content: space-between;
 
         .search-bar {
-            display: flex;
+            @extend %flex;
             height: 64px;
             align-items: flex-end;
             margin-right: ratio-space(4px);

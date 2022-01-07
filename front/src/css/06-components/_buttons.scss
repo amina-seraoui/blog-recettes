@@ -1,12 +1,22 @@
 .btn {
     background-color: $white;
-    color: $secondary-color;
+    display: inline-block;
+    border-radius: 5px;
+    padding: ratio-space(1px) ratio-space(3px);
+    font-weight: 600;
+    
+    &.primary {
+        background-color: $primary-color;
+    }
+    &.danger {
+        background-color: $danger-color;
+    }
 
     &.round {
-        display: inline-block;
         width: 64px;
         height: 64px;
         border-radius: 50%;
         overflow: hidden;
+        padding: 0;
     }
 }

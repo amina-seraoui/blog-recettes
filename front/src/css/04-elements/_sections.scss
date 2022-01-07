@@ -1,0 +1,9 @@
+section {
+    @extend .container;
+
+    overflow: hidden;
+}
+
+#hero + section {
+    padding: ratio-space(2px) 0;
+}

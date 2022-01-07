@@ -2,6 +2,23 @@ h1 {
     font-size: 70px;
     font-family: $font-secondary;
     line-height: 1.3em;
+    text-transform: capitalize;
+}
+
+h2 {
+    font-size: 36px;
+    font-family: $font-secondary;
+    line-height: 1.3em;
+    text-transform: uppercase;
+    
+    margin-bottom: ratio-space(4px);
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: capitalize;
+    line-height: 1.3em;
 }
 
 p {
