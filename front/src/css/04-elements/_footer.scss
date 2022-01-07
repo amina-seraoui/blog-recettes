@@ -1,0 +1,47 @@
+footer {
+    background-color: $primary-color;
+    padding: ratio-space(10px) 0 ratio-space(4px) 0;
+    color: $white;
+
+    .container {
+        .top {
+            @extend %flex;
+
+            & > div {
+                width: 50%;
+                p {
+                    margin: ratio-space(4px) 0;
+                    font-size: 24px;
+                    font-weight: 600;
+                }
+            }
+
+            nav {
+                @extend %flex;
+                width: 50%;
+                justify-content: space-evenly;
+                padding: ratio-space(8px) ratio-space(3px);
+            }
+        }
+
+        .bottom {
+            @extend %flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: ratio-space(2px);
+            
+            
+            p {
+                font-size: 14px;
+            }
+            
+            .socials {    
+                .icon {
+                    margin-left: ratio-space(2px);
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+        }
+    }
+}

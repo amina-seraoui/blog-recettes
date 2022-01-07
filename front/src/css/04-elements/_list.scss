@@ -1,0 +1,18 @@
+ul {
+    
+    li {
+        margin-bottom: ratio-space(2px);
+    }
+    
+    &.titled {
+        position: relative;
+        top: 20%;
+        
+        &::before {
+            content: attr(aria-label);
+            position: absolute;
+            top: -20%;
+            @extend h3;
+        }
+    }
+}
