@@ -1,22 +1,37 @@
 header {
-    padding: ratio-space(3px);
     @extend %flex;
+    position: sticky;
+    top: 0;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
+    background-color: rgba($white, .5);
+    transition: .3s;
+    padding: ratio-space(3px);
+
+    &:hover {
+        background-color: $white;
+    }
+
+    .logo {
+        height: 64px;
+    }
 
     .right {
         @extend %flex;
         justify-content: space-between;
+        align-items: center;
 
         .search-bar {
             @extend %flex;
-            height: 64px;
+            height: 48px;
             align-items: flex-end;
             margin-right: ratio-space(4px);
         }
 
         .icon {
             cursor: pointer;
+            height: 48px;  
         }
     }
 }

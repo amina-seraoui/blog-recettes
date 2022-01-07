@@ -5,6 +5,11 @@
 
 .logo {
     max-height: 124px;
+    display: inline-block;
+
+    img {
+        height: 100%;
+    }
 }
 
 .icon {
