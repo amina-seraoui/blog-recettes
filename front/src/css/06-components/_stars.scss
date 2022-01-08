@@ -1,13 +1,14 @@
-.stars {
+.js-stars {
     @extend %flex;
 
     .star {
         width: 21px;
         height: 21px;
+        display: block;
 
         background: url(../img/star-grey.svg) no-repeat center;
         
-        &.completed {
+        &.fill {
             background: url(../img/star-pink.svg) no-repeat center;
         }
     }

@@ -1,0 +1,11 @@
+hr {
+    border: none;
+    background-color: $grey;
+    height: 1px;
+    border-radius: 1px;
+
+    &.vr {
+        height: 100%;
+        width: 1px;
+    }
+}

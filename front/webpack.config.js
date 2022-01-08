@@ -119,11 +119,11 @@ const config = {
         historyApiFallback: {
             rewrites: [
                 { from: /^\/$/, to: 'index.html' },
-                { from: /^recette\/$/, to: 'recipe.html' },
-                { from: /^categorie\/$/, to: 'category.html' },
-                { from: /^admin\/$/, to: 'admin.html' },
-                { from: /^nouveau\/$/, to: 'form.html' },
-                { from: /^connexion\/$/, to: 'login.html' },
+                { from: /^\/recette$/, to: 'recipe.html' },
+                { from: /^\/categorie$/, to: 'category.html' },
+                { from: /^\/admin$/, to: 'admin.html' },
+                { from: /^\/nouveau$/, to: 'form.html' },
+                { from: /^\/connexion$/, to: 'login.html' },
             ]
         }
     },
