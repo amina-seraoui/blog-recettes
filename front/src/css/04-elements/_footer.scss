@@ -2,8 +2,8 @@ footer {
     background-color: $primary-color;
     padding: ratio-space(10px) 0 ratio-space(4px) 0;
     color: $white;
-    z-index: -1;
     position: relative;
+    z-index: -1;
 
     .container {
         .top {

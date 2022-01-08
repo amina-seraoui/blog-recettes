@@ -1,5 +1,4 @@
 ul {
-    
     li {
         margin-bottom: ratio-space(2px);
     }
@@ -7,12 +6,51 @@ ul {
     &.titled {
         position: relative;
         top: 20%;
+        margin-bottom: 20%;
         
         &::before {
             content: attr(aria-label);
             position: absolute;
             top: -20%;
             @extend h3;
+        }
+    }
+
+    &.tasks {
+        list-style: inside url(../img/uncheck-circle.svg);
+
+        li {
+            cursor: pointer;
+            &.complete {
+                list-style: inside url(../img/check-circle.svg);
+                text-decoration: line-through;
+                font-style: italic;
+            }
+        }
+    }
+}
+
+ol {
+    li {
+        position: relative;
+        counter-increment: counter; //nommer le compteur
+        left: ratio-space(4px);
+        margin-right: ratio-space(4px);
+        &::before {
+            content: counter(counter); //afficher la valeur du compteur
+            position: absolute;
+            top: 0;
+            left: - ratio-space(4px);
+            width: 21px;
+            height: 21px;
+            
+            @extend %flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: $secondary-color;
+            border-radius: 50%;
+            font-size: 14px;
         }
     }
 }

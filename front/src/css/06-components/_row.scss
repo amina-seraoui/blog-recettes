@@ -3,9 +3,11 @@ hr {
     background-color: $grey;
     height: 1px;
     border-radius: 1px;
+    margin: 0;
 
     &.vr {
         height: 100%;
+        min-height: 48px;
         width: 1px;
     }
 }

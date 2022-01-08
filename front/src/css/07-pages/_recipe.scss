@@ -1,0 +1,74 @@
+#recipe {
+    position: relative; // sinon le menu passe en dessous
+    z-index: -1;
+
+    * {
+        position: relative;
+        z-index: 0;
+    }
+
+    margin-top: ratio-space(8px);
+
+    h1 ~ .js-stars, h1 ~ p {
+        margin: ratio-space(4px) 0;
+    }
+
+    figure.cover {
+        min-height: 500px;
+        height: 640px;
+        overflow: hidden;
+        border-radius: 30px;
+        background-color: $primary-color;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 0%;
+        }
+    }
+
+    .indications {
+        @extend %flex;
+        margin: ratio-space(4px) 0;
+        .vr {
+            margin: 0 ratio-space(2px);
+            align-self: center;
+        }
+
+        .indication {
+            span {
+                display: block;
+
+                &.value {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    section:nth-child(2) {
+        display: grid;
+        grid-template-areas:
+                        'ingredients suggestions'
+                        'preparation suggestions';
+        grid-template-columns: 7fr 3fr;
+        grid-template-rows: auto 85%; // Seconde valeur mise au pif pour essayer de retirer la marge par défaut
+        column-gap: 20px;
+
+        #ingredients {
+            grid-area: ingredients;
+            margin-bottom: ratio-space(4px);
+        }    
+        #preparation {
+            grid-area: preparation;
+            margin-bottom: ratio-space(4px);
+
+            li {
+                margin-bottom: ratio-space(2px);
+            }
+        }  
+        #suggestions {
+            grid-area: suggestions;
+        }          
+    }
+}
