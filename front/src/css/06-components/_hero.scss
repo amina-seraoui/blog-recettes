@@ -1,6 +1,7 @@
 #hero {
     background-color: $primary-color;
-    height: 640px;
+    min-height: 500px;
+    height: 70vh;
     margin: ratio-space(8px) auto;
     border-radius: 30px;
     @extend %flex;
@@ -19,9 +20,8 @@
     }
 
     article {
-        width: 50%;
-
         @extend %flex;
+        width: 50%;
         flex-direction: column;
         justify-content: space-between;
 

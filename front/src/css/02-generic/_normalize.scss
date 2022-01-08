@@ -28,4 +28,7 @@ html, body {
     font-family: $font-primary;
     font-size: $font-size;
     color: $font-color;
+
+    position: relative;
+    z-index: -1;
 }
