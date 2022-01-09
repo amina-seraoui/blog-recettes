@@ -4,7 +4,7 @@
 </a>
 
 # Nuage de douceurs
-Un blog de recette de desserts
+Un blog de recettes de desserts
 
 ## Installation
 
