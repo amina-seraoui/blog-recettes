@@ -6,7 +6,7 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    background-color: rgba($white, .8);
+    background-color: $white;
     transition: .3s;
     padding: ratio-space(3px);
 

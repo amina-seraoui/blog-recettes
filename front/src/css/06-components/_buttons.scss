@@ -13,9 +13,9 @@
     }
 
     &.round {
+        @extend %round;
         width: 56px;
         height: 56px;
-        border-radius: 50%;
         overflow: hidden;
         padding: 0;
     }

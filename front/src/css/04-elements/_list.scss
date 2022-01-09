@@ -45,11 +45,11 @@ ol {
             height: 21px;
             
             @extend %flex;
+            @extend %round;
             align-items: center;
             justify-content: center;
 
             background-color: $secondary-color;
-            border-radius: 50%;
             font-size: 14px;
         }
     }

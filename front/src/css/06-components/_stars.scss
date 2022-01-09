@@ -6,7 +6,7 @@
         width: 21px;
         height: 21px;
         display: block;
-
+        transition: .2s;
         background: url(../img/star-grey.svg) no-repeat center;
         
         &.fill {
