@@ -1,5 +1,6 @@
 .container {
     width: unquote(100 - (200 / 12) + '%'); // 2 colonnes de marge
+    max-width: 1200px;
     margin: auto;
 }
 

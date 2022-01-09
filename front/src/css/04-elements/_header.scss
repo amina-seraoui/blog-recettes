@@ -1,6 +1,7 @@
 header {
     @extend %flex;
     position: sticky;
+    z-index: 999;
     top: 0;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -46,6 +47,8 @@ header {
             cursor: pointer;
             height: 48px;
             transition: .5s;
+
+            filter: drop-shadow(2px 2px 1px rgba($grey, .5));
 
             &:hover {
                 transform: scale(.8);

@@ -2,6 +2,7 @@
     @extend %flex;
 
     .star {
+        cursor: pointer;
         width: 21px;
         height: 21px;
         display: block;
@@ -11,5 +12,13 @@
         &.fill {
             background: url(../img/star-pink.svg) no-repeat center;
         }
+
+        &:hover ~ .star  {
+            filter: none;
+        }
+    }
+
+    &:hover .star {
+        filter: drop-shadow(0 0 2px $mallow)
     }
 }

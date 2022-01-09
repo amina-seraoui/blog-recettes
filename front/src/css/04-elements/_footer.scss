@@ -2,10 +2,23 @@ footer {
     background-color: $primary-color;
     padding: ratio-space(10px) 0 ratio-space(4px) 0;
     color: $white;
-    position: relative;
-    z-index: -1;
 
+    ::selection {
+        background-color: $secondary-color;
+    }
+    
     .container {
+        a {
+            transition: .3s;
+            &:hover {
+                color: $secondary-color;
+
+                .icon {
+                    filter: brightness(0) saturate(100%) invert(93%) sepia(19%) saturate(6391%) hue-rotate(295deg) brightness(96%) contrast(84%);
+                }
+            }
+        }
+
         .top {
             @extend %flex;
 

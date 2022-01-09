@@ -31,16 +31,42 @@
                 margin-bottom: ratio-space(1px);
             }
             
-            .stars {
+            .js-stars {
                 margin-bottom: ratio-space(2px);
             }
 
             .recipe-card-link {
                 @extend .btn;
+                position: relative;
 
                 border: solid 1px $thirdary-color;
                 align-self: end;
                 font-size: 14px;
+                background-color: transparent;
+                overflow: hidden;
+                transition: .5s;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: -300%;
+                    width: 120%;
+                    height: 100%;
+                    background-color: $secondary-color;
+                    transition: .5s;
+
+                    transform: skewX(25deg);
+                }
+                
+                &:hover {
+                    border: solid 1px transparent;
+                    color: $white;
+                    &:before {
+                        left: -10%;
+                    }
+                }
             }
         }
 
