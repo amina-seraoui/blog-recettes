@@ -2,6 +2,7 @@
 
 namespace App\Router;
 
+use App\Controller\Category;
 use App\Controller\Home;
 
 $uri = $_SERVER['REQUEST_URI'];
@@ -14,13 +15,17 @@ elseif ($uri === '/login') {
     require 'views/login.php';
 }
 
-elseif (preg_match('#^/([a-z\-0-9]{3,})$#i', $uri, $matches)) {
-    $category = $matches[1];
-    require 'views/category.php';
+elseif (preg_match('#^\/([a-z\-0-9]{3,})(\?=.*)?$#', $uri, $matches)) {
+    echo (new Category($matches[1]))();
 }
 
-elseif (preg_match('#^/([a-z\-0-9]{3,})/([a-z\-0-9]{3,})$#i', $uri, $matches)) {
-    $category = $matches[1];
-    $recipe = $matches[2];
-    require 'views/recipe.php';
+elseif (preg_match('#^\/([a-z\-0-9]{3,})/([a-z\-0-9]{3,})(\?=.*)?$#', $uri, $matches)) {
+    // $category = $matches[1];
+    // $recipe = $matches[2];
+    // require 'views/recipe.php';
+}
+
+else {
+    echo 'Erreur 404';
+    http_response_code(404);
 }

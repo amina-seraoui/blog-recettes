@@ -21,5 +21,19 @@ abstract class Controller {
     {
         return $this->renderer->render(dirname(__DIR__) . '/views' . '/' . $view . '.php', $params);
     }
+    
+    protected function pageNotFound()
+    {
+        echo 'Erreur 404';
+        http_response_code(404);
+        // header('Location: 404');
+        die();
+    }
+
+    protected function redirect(string $url)
+    {
+        header('Location: ' . $url, true, 301);
+        die();
+    }
 }
 
