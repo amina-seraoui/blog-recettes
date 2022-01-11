@@ -3,3 +3,4 @@ front/package-lock.json
 public/css/*
 public/js/*
 public/assets/*
+/vendor/
