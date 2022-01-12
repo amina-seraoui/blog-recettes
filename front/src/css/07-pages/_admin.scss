@@ -1,0 +1,20 @@
+#admin {
+    section {
+        @extend %flex;
+        margin: ratio-space(8px) auto;
+        flex-direction: column;
+        
+        h2 {
+            margin: ratio-space(4px) 0 ratio-space(2px) 0;
+        }
+
+        >.btn {
+            margin-bottom: ratio-space(8px);
+            align-self: flex-end;
+        }
+
+        .pagination {
+            margin: ratio-space(10px) 0 ratio-space(8px) 0;
+        }
+    }
+}

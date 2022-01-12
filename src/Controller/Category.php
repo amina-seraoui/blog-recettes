@@ -72,7 +72,7 @@ class Category extends Controller {
 
     private function getPagination($currentPage, $lastPage): string
     {
-        $html = '<div id="pagination">';
+        $html = '<div class="pagination">';
         if ($lastPage < 5) {
             for ($i = 1; $i <= $lastPage; $i++) {
                 $html .= '<a href="/' . $this->category->slug . '?p=' . $i .'"' . ($currentPage === $i ? 'class="active"' : '') . '>' . $i . '</a>';

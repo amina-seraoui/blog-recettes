@@ -1,10 +1,9 @@
-#pagination {
+.pagination {
+    @extend %flex;
     margin: auto 0;
-    display: flex;
     justify-content: center;
     align-items: flex-end;
     font-size: 14px;
-
     margin-bottom: ratio-space(8px);
 
     a {
