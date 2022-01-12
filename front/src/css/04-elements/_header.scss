@@ -103,4 +103,12 @@ header {
             }
         }
     }
+
+    @media #{$media-down-lg} {
+        .right {
+            .search-bar {
+                display: none!important;
+            }
+        }
+    }
 }

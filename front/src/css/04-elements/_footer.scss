@@ -21,26 +21,32 @@ footer {
 
         .top {
             @extend %flex;
+            flex-wrap: wrap;
 
             & > div {
                 width: 50%;
                 p {
                     margin: ratio-space(4px) 0;
-                    font-size: 24px;
+                    font-size: rem(24px);
                     font-weight: 600;
                 }
             }
 
             nav {
                 @extend %flex;
+                flex-wrap: wrap;
                 width: 50%;
                 justify-content: space-evenly;
                 padding: ratio-space(8px) ratio-space(3px);
+                ul {
+                    min-width: 50%;
+                }
             }
         }
 
         .bottom {
             @extend %flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             padding-top: ratio-space(2px);
@@ -57,6 +63,39 @@ footer {
                     height: 32px;
                 }
             }
+        }
+    }
+
+    @media #{$media-down-lg} {
+        .container {
+            .top {
+                & > div {
+                    width: 100%;
+
+                    p {
+                        font-size: rem(16px);
+                    }
+                }
+                nav {
+                    width: 100%;
+                    ul {
+                        margin-top: ratio-space(4px);
+                    }
+                }
+            }
+            .bottom {
+                justify-content: flex-end;
+                p {
+                    width: 100%;
+                    margin-bottom: ratio-space(1px);
+                }
+            }
+        }
+    }
+
+    @media #{$media-down-sm} {
+        .container .top nav ul {
+            width: 100%;
         }
     }
 }

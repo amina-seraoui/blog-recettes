@@ -41,13 +41,36 @@
             }
 
             p {
-                font-size: 24px;
+                font-size: rem(24px);
                 font-weight: 600;
             }
         }
 
         .btn {
             align-self: end;
+        }
+    }
+
+    @media #{$media-down-lg} {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+
+        figure {
+            width: 100%;
+            min-height: 500px;
+            height: 45vh;
+        }
+        article {
+            width: 100%;
+            .content p {
+                font-size: em(16px);
+            }
+
+            .btn {
+                width: 48px;
+                height: 48px;
+            }
         }
     }
 }

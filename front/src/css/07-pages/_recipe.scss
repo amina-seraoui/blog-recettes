@@ -7,6 +7,7 @@
 
     .indications {
         @extend %flex;
+        flex-wrap: wrap;
         margin: ratio-space(4px) 0;
         .vr {
             margin: 0 ratio-space(2px);
@@ -15,7 +16,9 @@
 
         .indication {
             span {
-                display: block;
+                &.label {
+                    display: block;
+                }
 
                 &.value {
                     font-weight: 400;
@@ -48,5 +51,26 @@
         #suggestions {
             grid-area: suggestions;
         }          
+    }
+
+    @media #{$media-down-lg} {
+        .indications {
+            flex-direction: column;
+            .vr {
+                display: none;
+            }
+            .indication {
+                margin: ratio-space(2px) 0;
+            }
+        }
+
+        section:nth-child(2) {
+            grid-template-columns: 100%;
+            grid-template-rows: auto;
+            grid-template-areas:
+                        'ingredients'
+                        'preparation'
+                        'suggestions';
+        }
     }
 }

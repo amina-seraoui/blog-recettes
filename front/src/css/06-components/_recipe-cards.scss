@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: ratio-space(1px);
-    
+
     .recipe-card {
         max-width: 326px;
         width: clamp(unquote((100/3) + '%'), 100%, 326px);
@@ -69,6 +69,11 @@
                 }
             }
         }
+    }
 
+    @media #{$media-down-lg} {
+        .recipe-card {
+            margin: 0 auto ratio-space(8px) auto;
+        }
     }
 }
