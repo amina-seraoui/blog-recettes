@@ -1,6 +1,6 @@
 <article class="recipe-card">
     <a href="/<?= $recipe->r_slug ?>" class="recipe-card-image">
-        <img src="uploads/img/thumbs/<?= $recipe->image ?>" alt="<?= $recipe->name ?>">
+        <img src="/uploads/img/thumbs/<?= $recipe->image ?>" alt="<?= $recipe->name ?>">
     </a>
     <div class="recipe-card-content">
         <span class="badge level-<?= $recipe->level ?>"><?= LEVELS[$recipe->level] ?></span>

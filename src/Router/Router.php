@@ -4,6 +4,7 @@ namespace App\Router;
 
 use App\Controller\Category;
 use App\Controller\Home;
+use App\Controller\Recipe;
 
 $uri = $_SERVER['REQUEST_URI'];
 
@@ -20,6 +21,8 @@ elseif (preg_match('#^\/([a-z\-0-9]{3,})(\?=.*)?$#', $uri, $matches)) {
 }
 
 elseif (preg_match('#^\/([a-z\-0-9]{3,})/([a-z\-0-9]{3,})(\?=.*)?$#', $uri, $matches)) {
+    echo (new Recipe($matches[2], $matches[1]))();
+    
     // $category = $matches[1];
     // $recipe = $matches[2];
     // require 'views/recipe.php';
