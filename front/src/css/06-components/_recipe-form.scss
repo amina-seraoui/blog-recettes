@@ -1,0 +1,109 @@
+#recipe-form {
+    form {
+        @extend %grid;
+        grid-column-gap: ratio-space(2px);
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas:
+            'name slug prep cook'
+            'description description ingredients ingredients'
+            'image image ingredients ingredients'
+            'diff diff preparation preparation'
+            '. . preparation preparation'
+            '. . preparation preparation'
+            '. . . submit'
+        ;
+        
+        >.field:nth-child(1) {
+            grid-area: name;
+        }
+        >.field:nth-child(2) {
+            grid-area: slug;
+        }
+        >.field:nth-child(3) {
+            grid-area: description;
+        }
+        >fieldset.upload {
+            grid-area: image;
+        }
+        >.field:nth-child(5) {
+            grid-area: diff;
+        }
+        >.field:nth-child(6) {
+            grid-area: prep;
+        }
+        >.field:nth-child(7) {
+            grid-area: cook;
+        }
+        >fieldset.array:nth-child(8) {
+            grid-area: ingredients;
+        }
+        >fieldset.array:nth-child(9) {
+            grid-area: preparation;
+        }
+        input[type="submit"] {
+            grid-area: submit;
+            display: inline-block;
+        }
+
+        @media #{$media-down-lg} {
+            grid-template-areas:
+                'name slug prep prep'
+                'description description cook cook'
+                'image image ingredients ingredients'
+                'image image ingredients ingredients'
+                'diff diff preparation preparation'
+                '. . preparation preparation'
+                '. . preparation preparation'
+                '. . . submit'
+            ;
+
+            .array {
+                .field, .preview {
+                    width: 100%;
+                }
+            }
+        }
+
+        @media #{$media-down-md} {
+            grid-template-columns: 50%;
+            grid-template-areas:
+                'name slug'
+                'description description'
+                'diff diff'
+                'prep cook'
+                'image image'
+                'ingredients ingredients'
+                'preparation preparation'
+                '. submit'
+            ;
+
+            .array {
+                .field, .preview {
+                    width: 45%;
+                }
+            }
+        }
+
+        @media #{$media-down-sm} {
+            grid-template-columns: 100%;
+            grid-template-areas:
+                'name'
+                'slug'
+                'description'
+                'diff'
+                'prep'
+                'cook'
+                'image'
+                'ingredients'
+                'preparation'
+                'submit'
+            ;
+            .array {
+                .field, .preview {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

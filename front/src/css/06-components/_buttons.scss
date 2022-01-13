@@ -7,11 +7,16 @@
     display: inline-flex;
     align-items: center;
     line-height: 1em;
+    cursor: pointer;
     
     &.primary {
         background-color: $primary-color;
         color: $white;
     }
+    &.secondary {
+        background-color: $grey;
+    }
+
     &.danger {
         background-color: $danger-color;
         color: $white;

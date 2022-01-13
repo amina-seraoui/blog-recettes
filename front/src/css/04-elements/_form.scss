@@ -1,8 +1,114 @@
 form {
-    input {
-        background: none;
-        &[type='search'] {
+    input, textarea, select {
+        padding: ratio-space(1px);
+        border-radius: 5px;
+        resize: none;
+
+        &[type="search"] {
             border-bottom: solid 2px $secondary-color;
+        }
+    }
+
+    .field {
+        margin-bottom: ratio-space(2px);
+        input, textarea, select {
+            margin-top: ratio-space(2px);
+            display: block;
+            width: 100%;
+            border: solid 1px $primary-color;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        &.required {
+            label {
+                &::after { // before or after ?
+                    content: '*';
+                    position: relative;
+                    color: $danger-color;
+                    margin-left: ratio-space(1px);
+                }
+            }
+        }
+    }
+
+    fieldset {
+        border-top: solid 1px $primary-color;
+        border-bottom: solid 1px $primary-color;
+        margin-bottom: ratio-space(2px);
+
+        legend {
+            font-weight: 600;
+            margin: ratio-space(1px);
+            padding: 0 ratio-space(1px);
+        }
+
+        &.upload {
+            height: 150px;
+            label {
+                display: block;
+                height: 100%;
+                width: 100%;
+                cursor: pointer;
+
+                background: url('../img/picture.svg') center/auto no-repeat;
+                position: relative;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    width: 90%;
+                    height: 80%;
+                    top: 10%;
+                    left: 5%;
+                }
+                &:hover {
+                    &:after {
+                        border: dashed 2px $grey;
+                    }
+                }
+                &.drag-over {
+                    &:after {
+                        background-color: rgba($grey, .2);
+                        border: dashed 2px $grey;
+                    }
+                }
+            }
+
+            input[type="file"] {
+                display: none;
+            }
+        }
+
+        &.array {
+            @extend %flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            
+            .field {
+                @extend %flex;
+                justify-content: space-between;
+                width: 45%;
+                input {
+                    margin: 0;
+                }
+            }
+
+            .preview {
+                width: 45%;
+
+                .btn {
+                    padding: ratio-space(1px);
+                    margin-left: ratio-space(1px);
+                }
+                
+                li {
+                    margin: ratio-space(1px) 0;
+                }
+            }
         }
     }
 }
