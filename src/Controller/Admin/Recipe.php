@@ -109,7 +109,7 @@ class Recipe extends Controller {
                 $slug = (!empty($_POST['slug'])) ? $_POST['slug'] : strtolower(str_replace(' ', '-', $_POST['name']));
 
                 $ext = strtolower(substr(strrchr($_FILES['image']['name'], '.'), 1));
-                $image = uniqid('recipe-') . '.' . $ext;
+                $image = $ext ? uniqid('recipe-') . '.' . $ext : $item['image'];
 
                 $req = $this->pdo->prepare(
                     'UPDATE recipes SET name = :name, slug = :slug, description = :description, level = :level, image = :image, prep_time = :prep_time, cook_time = :cook_time, ingredients = :ingredients, preparation = :preparation, category_id = :category_id, author_id = :author_id WHERE id = :id'
@@ -129,8 +129,11 @@ class Recipe extends Controller {
                 $success = $req->execute();
 
                 if ($success) {
-                    $s = $this->removeImage($item['image']);
-                    $this->createImage($_FILES['image'], $image);
+                    $s = true;
+                    if ($ext) {
+                        $s = $this->removeImage($item['image']);
+                        $this->createImage($_FILES['image'], $image);
+                    }
         
                     header('Location: /admin/recipes?success=' . (string)$s);
                 } else {
