@@ -1,5 +1,8 @@
 <?php
 
+use App\Controller\Home;
+use App\Router\Route;
+
 require_once '../vendor/autoload.php';
 
 //// IF DEV
@@ -8,5 +11,4 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 //// END IF
 
-require_once '../src/Router/Router.php';
-    
+require_once '../src/Router/routing.php';

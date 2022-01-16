@@ -2,28 +2,18 @@
 
 namespace App\Controller;
 
+use App\Router\PageNotFoundException;
 use PDO;
 
 class Recipe extends Controller {
     private string $slug;
     private string $c_slug;
     private ?object $recipe = null;
-    private int $limit = 9;
 
-    public function __construct(string $slug, string $c_slug)
+    public function __invoke(string $c_slug, string $slug): string
     {
         $this->slug = $slug;
         $this->c_slug = $c_slug;
-        parent::__construct();
-    }
-
-    public function __invoke(): string
-    {
-        define('LEVELS', [
-            1 => 'facile',
-            2 => 'amateur',
-            3 => 'experimenté'
-        ]);
 
         $req = $this->pdo->prepare(
             'SELECT r.id, r.name, r.image, r.slug, c.slug AS c_slug, r.description, r.prep_time, r.cook_time, r.level, r.ingredients, r.preparation, r.category_id
@@ -31,11 +21,11 @@ class Recipe extends Controller {
             INNER JOIN categories AS c ON c.id = r.category_id
             WHERE r.slug = :slug'
         );
-        $req->bindParam('slug', $this->slug, \PDO::PARAM_STR);
+        $req->bindParam('slug', $slug, \PDO::PARAM_STR);
         $req->execute();
 
         if ($req->rowCount() < 1) {
-            $this->pageNotFound();
+            throw new PageNotFoundException('Aucune recette ne correspond au slug ' . $slug);
         } else {
             $this->recipe = $req->fetch(\PDO::FETCH_OBJ);
 

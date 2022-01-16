@@ -5,23 +5,13 @@ namespace App\Controller;
 use PDO;
 
 class Category extends Controller {
-    private string $slug;
     private ?object $category = null;
     private int $limit = 9;
+    private string $slug;
 
-    public function __construct(string $slug)
+    public function __invoke(string $slug): string
     {
         $this->slug = $slug;
-        parent::__construct();
-    }
-
-    public function __invoke(): string
-    {
-        define('LEVELS', [
-            1 => 'facile',
-            2 => 'amateur',
-            3 => 'experimenté'
-        ]);
 
         $req = $this->pdo->prepare(
             'SELECT name, slug, id FROM categories WHERE slug = :slug'

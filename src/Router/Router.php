@@ -2,33 +2,59 @@
 
 namespace App\Router;
 
-use App\Controller\Category;
-use App\Controller\Home;
-use App\Controller\Recipe;
+class Router
+{
+    private array $routes = [];
+    private array $namedRoutes = [];
 
-$uri = $_SERVER['REQUEST_URI'];
+    public function __construct(private string $url) {}
 
-if ($uri === '/') {
-    echo (new Home())();
-}
+    public function get(string $path, string|callable $callable, ?string $name = null): self
+    {
+        return $this->add($path, $callable, $name);
+    }
 
-elseif ($uri === '/login') {
-    require 'views/login.php';
-}
+    public function post(string $path, string|callable $callable, ?string $name = null): self
+    {
+        return $this->add($path, $callable, $name, 'POST');
+    }
 
-elseif (preg_match('#^\/([a-z\-0-9]{3,})(\?=.*)?$#', $uri, $matches)) {
-    echo (new Category($matches[1]))();
-}
+    private function add(string $path, string|callable $callable, ?string $name = null, string $method = 'GET'): self
+    {
+        if (is_string($callable)) {
+            $callable = new $callable();
+        }
 
-elseif (preg_match('#^\/([a-z\-0-9]{3,})/([a-z\-0-9]{3,})(\?=.*)?$#', $uri, $matches)) {
-    echo (new Recipe($matches[2], $matches[1]))();
-    
-    // $category = $matches[1];
-    // $recipe = $matches[2];
-    // require 'views/recipe.php';
-}
+        $route = $this->routes[$method][] = new Route($path, $callable, $name);
 
-else {
-    echo 'Erreur 404';
-    http_response_code(404);
+        if(!is_null($name)) {
+                $this->namedRoutes[$name] = $route;
+        }
+
+        return $this;
+    }
+
+    public function match()
+    {
+        $method = $_SERVER['REQUEST_METHOD'];
+        if (!isset($this->routes[$method])) {
+            throw new PageNotFoundException('No routes on this method');
+        }
+        
+        foreach ($this->routes[$method] as $route) {
+            if ($route->match($this->url)) {
+                return $route->run();
+            }
+        }
+        throw new PageNotFoundException('No routes match');
+    }
+
+    public function getURL(string $name, array $params = []): string
+    {
+        if (isset($this->namedRoutes[$name])) {
+            return $this->namedRoutes[$name]->getURL($params);
+        }
+
+        throw new PageNotFoundException('No route matches this name');
+    }
 }

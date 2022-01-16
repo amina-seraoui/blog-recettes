@@ -5,12 +5,8 @@ namespace App\Router;
 class Renderer
 {
     private string $layout = 'layout';
-    private \PDO $pdo;
 
-    public function __construct(\PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
+    public function __construct(private \PDO $pdo) {}
 
     public function render(string $path, array $params = [])
     {
