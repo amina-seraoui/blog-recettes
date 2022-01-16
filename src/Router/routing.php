@@ -1,5 +1,7 @@
 <?php
 
+use App\Controller\Admin\Login;
+use App\Controller\Admin\Logout;
 use App\Controller\Category;
 use App\Controller\Home;
 use App\Controller\Recipe;
@@ -19,7 +21,9 @@ $router = new App\Router\Router($_SERVER['REQUEST_URI']);
 
 $router
     ->get('/', Home::class, 'home')
-    ->get('/connexion', fn () => require 'views/login.php', 'login')
+    ->get('/connexion', Login::class, 'login')
+    ->post('/connexion', Login::class)
+    ->get('/deconnexion', Logout::class)
     ->get('/admin/recipes', AdminRecipe::class, 'admin.recipe.index')
     ->get('/admin/recipes/new', AdminRecipe::class, 'admin.recipe.create')
     ->post('/admin/recipes/new', AdminRecipe::class)

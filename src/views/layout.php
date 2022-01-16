@@ -24,6 +24,12 @@
                     <div id="menu">
                         <nav>
                             <img src="/uploads/img/close.svg" alt="Fermer" class="icon" id="close-menu">
+                            <?php if (isset($_SESSION['user'])): ?>
+                                <ul aria-label="Administration" class="titled">
+                                    <li><a href="/admin/recipes">Gestion des recettes</a></li>
+                                    <li><a href="/deconnexion">Déconnexion</a></li>
+                                </ul>
+                            <?php endif; ?>
                             <ul aria-label="Catégories" class="titled">
                                 <?php foreach ($categories as $category): ?>
                                     <li><a href="/<?= $category->slug ?>"><?= $category->name ?></a></li>
@@ -48,6 +54,7 @@
                         <ul aria-label="Á propos" class="titled">
                             <li><a href="#">Nous contacter</a></li>
                             <li><a href="#">Carrières</a></li>
+                            <li><a href="/connexion">Connexion</a></li>
                         </ul>
                         <ul aria-label="Catégories" class="titled">
                         <?php foreach ($categories as $category): ?>

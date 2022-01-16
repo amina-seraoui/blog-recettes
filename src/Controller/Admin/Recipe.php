@@ -10,6 +10,10 @@ class Recipe extends Controller {
 
     public function __invoke(?int $id = null): string
     {
+        if (!isset($_SESSION['user'])) {
+            return $this->redirect('/connexion');
+        }
+
         if (str_ends_with($_SERVER['REQUEST_URI'], '/new')) {
             return $this->create($_SERVER['REQUEST_METHOD']);
         }
@@ -58,7 +62,7 @@ class Recipe extends Controller {
                 $req = $this->pdo->prepare(
                     'INSERT INTO recipes
                     (name, slug, description, level, image, prep_time, cook_time, ingredients, preparation, category_id, author_id)
-                    VALUES (:name, :slug, :description, :level, :image, :prep_time, :cook_time, :ingredients, :preparation, :category_id, 1)'
+                    VALUES (:name, :slug, :description, :level, :image, :prep_time, :cook_time, :ingredients, :preparation, :category_id, :author_id)'
                 );
                 $req->bindParam('name', $_POST['name'], \PDO::PARAM_STR);
                 $req->bindParam('slug', $slug, \PDO::PARAM_STR);
@@ -70,7 +74,7 @@ class Recipe extends Controller {
                 $req->bindParam('ingredients', $_POST['ingredients'], \PDO::PARAM_STR);
                 $req->bindParam('preparation', $_POST['preparation'], \PDO::PARAM_STR);
                 $req->bindParam('category_id', $_POST['category_id'], \PDO::PARAM_INT);
-                // $req->bindParam('author_id', 1, \PDO::PARAM_INT);
+                $req->bindParam('author_id', $_SESSION['user'], \PDO::PARAM_INT);
                 $success = $req->execute();
 
                 if ($success) {
@@ -108,7 +112,7 @@ class Recipe extends Controller {
                 $image = uniqid('recipe-') . '.' . $ext;
 
                 $req = $this->pdo->prepare(
-                    'UPDATE recipes SET name = :name, slug = :slug, description = :description, level = :level, image = :image, prep_time = :prep_time, cook_time = :cook_time, ingredients = :ingredients, preparation = :preparation, category_id = :category_id, author_id = 1 WHERE id = :id'
+                    'UPDATE recipes SET name = :name, slug = :slug, description = :description, level = :level, image = :image, prep_time = :prep_time, cook_time = :cook_time, ingredients = :ingredients, preparation = :preparation, category_id = :category_id, author_id = :author_id WHERE id = :id'
                 );
                 $req->bindParam('name', $_POST['name'], \PDO::PARAM_STR);
                 $req->bindParam('slug', $slug, \PDO::PARAM_STR);
@@ -121,7 +125,7 @@ class Recipe extends Controller {
                 $req->bindParam('preparation', $_POST['preparation'], \PDO::PARAM_STR);
                 $req->bindParam('category_id', $_POST['category_id'], \PDO::PARAM_INT);
                 $req->bindParam('id', $id, \PDO::PARAM_INT);
-                // $req->bindParam('author_id', 1, \PDO::PARAM_INT);
+                $req->bindParam('author_id', $_SESSION['user'], \PDO::PARAM_INT);
                 $success = $req->execute();
 
                 if ($success) {
