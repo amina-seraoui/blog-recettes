@@ -45,7 +45,7 @@ class Recipe extends Controller {
         $req->execute();
 
         $recipes = $req->fetchAll(\PDO::FETCH_OBJ);
-        $pagination = $this->getPagination($current, $last);
+        $pagination = $this->getPagination($current, $last, '/admin/recipes');
         return $this->render('admin/recipe/index', compact('recipes', 'pagination'));
     }
 
@@ -237,25 +237,5 @@ class Recipe extends Controller {
         }
 
         return [$p, $lastPage];
-    }
-
-    private function getPagination($currentPage, $lastPage): string
-    {
-        $html = '<div class="pagination">';
-        if ($lastPage < 5) {
-            for ($i = 1; $i <= $lastPage; $i++) {
-                $html .= '<a href="/admin/recipes?p=' . $i .'"' . ($currentPage === $i ? 'class="active"' : '') . '>' . $i . '</a>';
-            }
-        } else {
-            for ($i = 1; $i <= 2; $i++) {
-                $html .= '<a href="/admin/recipes?p=' . $i .'"' . ($currentPage === $i ? 'class="active"' : '') . '>' . $i . '</a>';
-            }
-            $html .= '<span>...</span>';
-            for ($i = $lastPage - 1; $i <= $lastPage; $i++) {
-                $html .= '<a href="/admin/recipes?p=' . $i .'"' . ($currentPage === $i ? 'class="active"' : '') . '>' . $i . '</a>';
-            }
-        }
-        
-        return $html .= '</div>';
     }
 }

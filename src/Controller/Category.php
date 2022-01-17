@@ -26,7 +26,7 @@ class Category extends Controller {
         }
 
         [$current, $last] = $this->getPage();
-        return $this->show($current, $this->getPagination($current, $last));        
+        return $this->show($current, $this->getPagination($current, $last, '/' . $this->category->slug));        
     }
 
     /***
@@ -57,27 +57,7 @@ class Category extends Controller {
             $this->redirect('/' . $this->category->slug . '?p=' . $lastPage);
         }
 
-        return [$p, $lastPage];
-    }
-
-    private function getPagination($currentPage, $lastPage): string
-    {
-        $html = '<div class="pagination">';
-        if ($lastPage < 5) {
-            for ($i = 1; $i <= $lastPage; $i++) {
-                $html .= '<a href="/' . $this->category->slug . '?p=' . $i .'"' . ($currentPage === $i ? 'class="active"' : '') . '>' . $i . '</a>';
-            }
-        } else {
-            for ($i = 1; $i <= 2; $i++) {
-                $html .= '<a href="/' . $this->category->slug . '?p=' . $i .'"' . ($currentPage === $i ? 'class="active"' : '') . '>' . $i . '</a>';
-            }
-            $html .= '<span>...</span>';
-            for ($i = $lastPage - 1; $i <= $lastPage; $i++) {
-                $html .= '<a href="/' . $this->category->slug . '?p=' . $i .'"' . ($currentPage === $i ? 'class="active"' : '') . '>' . $i . '</a>';
-            }
-        }
-        
-        return $html .= '</div>';
+        return [(int)$p, $lastPage];
     }
 
     private function show(int $page, string $pagination)
