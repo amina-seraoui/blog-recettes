@@ -9,41 +9,44 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    background-color: transparent;
+    z-index: 0;
     
     &.primary {
+        background-color: transparent;
         &:after {
-            background-color: $secondary-color;
+            background-color: darken($primary-color, 15);
         }
-
+        
         &:before {
             background-color: $primary-color;
         }
-
+        
         &:is(input) {
             background-color: $primary-color;
         }
-
+        
         color: $white;
     }
-
+    
     &.secondary {
+        background-color: transparent;
         &:after {
-            background-color: $secondary-color;
+            background-color: darken($grey, 15);
         }
-
+        
         &:before {
             background-color: $grey;
         }
-
+        
         &:is(input) {
             background-color: $grey;
         }
     }
-
+    
     &.danger {
+        background-color: transparent;
         &:after {
-            background-color: $thirdary-color;
+            background-color: darken($danger-color, 15);
         }
 
         &:before {
@@ -84,7 +87,19 @@
         left: 0;
     }
 
+    box-shadow: 1px 4px 4px 0 rgba($black, .5);
+    transition: .5s;
+    &:is(input) {
+        &:hover {
+            box-shadow: inset -1px -1px 4px 0 rgba($black, .5);
+        }
+    }
+
     &:hover {
+        &.round {
+            transform: rotate(360deg);
+            box-shadow: none;
+        }
         &:after {
             width: 100%;
             height: 100%;

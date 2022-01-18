@@ -16,7 +16,7 @@
                         </div>
                         <div class="recipe-card-footer">
                             <a href="/admin/recipes/<?= $recipe->id ?>" class="btn primary">Modifier</a>
-                            <form action="/admin/recipes/delete/<?= $recipe->id ?>" method="POST">
+                            <form action="/admin/recipes/delete/<?= $recipe->id ?>" method="POST" class="inline">
                                 <input type="hidden" value="1">
                                 <input type="submit" class="btn danger" value="Supprimer">
                             </form>
