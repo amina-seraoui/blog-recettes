@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
 import FieldsetList from './FieldsetList'
+import './imageUpload'
 
 const jsTodo = document.getElementsByClassName('js-todo')
 
