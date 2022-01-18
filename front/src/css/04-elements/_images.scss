@@ -20,9 +20,10 @@ figure.cover {
         height: 640px;
         border-radius: 30px;
     }
-
+    
     &.category {
-        border-radius: 200px 15px;
+        border-radius: 15px;
+        height: 300px;
     }
         
     img {
