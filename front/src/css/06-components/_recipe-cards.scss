@@ -20,6 +20,10 @@
                 height: 100%;
                 object-fit: cover;
                 object-position: 50% 0%;
+                transition: .5s;
+                &:hover {
+                    transform: scale(1.2) rotate(11deg);
+                }
             }
         }
 

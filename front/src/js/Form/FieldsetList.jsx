@@ -22,10 +22,23 @@ const FieldsetList = ({ data, label, name }) => {
         setValue('')
     }
 
+    const handlePress = e => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            handleClick(e)
+        }
+    }
+
+    const handleChange = (e, id) => {
+        const clonedData = [...finalData]
+        clonedData[id] = e.target.innerText
+        setFinalData(clonedData)
+    }
+
     return <>
         <legend>{label}</legend>
         <div className="field">
-            <input type="text" value={value} onInput={e => setValue(e.target.value)}/>
+            <input type="text" value={value} onChange={e => setValue(e.target.value)} onKeyPress={handlePress}/>
             <span className="btn secondary" onClick={handleClick}>+</span>
         </div>
 
@@ -33,7 +46,7 @@ const FieldsetList = ({ data, label, name }) => {
             {
                 finalData.map((item, id) => {
                     return <li key={id}>
-                        {item}
+                        <span contentEditable onBlur={e => handleChange(e, id)}>{item}</span>
                         <span className="btn danger" onClick={e => handleRemove(id)}>-</span>
                     </li>
                 })
