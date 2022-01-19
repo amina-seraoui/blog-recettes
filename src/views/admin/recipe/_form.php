@@ -13,7 +13,7 @@
     </div>
     <fieldset class="upload image">
         <legend>Image :</legend>
-        <label for="image" <?= $item['image'] ? 'style="background: center / cover url(/uploads/img/thumbs/' . $item['image'] . ')"' : '' ?>/>
+        <label for="image" <?= isset($item['image']) ? 'style="background: center / cover url(/uploads/img/thumbs/' . $item['image'] . ')"' : '' ?>/>
         <input type="file" id="image" name="image" accept="image/*" value="<?= $item['image'] ?? '' ?>"/>
     </fieldset>
     <div class="field required">
