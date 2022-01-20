@@ -5,7 +5,7 @@
     <div class="recipe-card-content">
         <span class="badge level-<?= $recipe->level ?>"><?= LEVELS[$recipe->level] ?></span>
         <a href="/<?= $recipe->r_slug ?>"><h3 class="recipe-card-title"><?= $recipe->name ?></h3></a>
-        <div class="js-stars" data-note="4"></div>
+        <div class="js-stars" data-note="<?= $recipe->note ?? 0 ?>" data-recipe="<?= $recipe->id ?>"></div>
         <a href="/<?= $recipe->c_slug ?>" class="recipe-card-link"><?= $recipe->category ?></a>
     </div>
 </article>

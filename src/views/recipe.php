@@ -1,7 +1,7 @@
 <main id="recipe">
     <section>
         <h1><?= $recipe->name ?></h1>
-        <div class="js-stars" data-note="4"></div>
+        <div class="js-stars" data-note="<?= $recipe->note ?? 0 ?>" data-recipe="<?= $recipe->id ?>"></div>
         <hr>
         <p><?= $recipe->description ?></p>
         <figure class="cover recipe"><img src="/uploads/img/<?= $recipe->image ?>" alt="<?= $recipe->name ?>"></figure>

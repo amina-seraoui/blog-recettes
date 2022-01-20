@@ -6,6 +6,7 @@ use App\Controller\Category;
 use App\Controller\Home;
 use App\Controller\Recipe;
 use App\Controller\Admin\Recipe as AdminRecipe;
+use App\Controller\Api\Stars;
 use App\Router\PageNotFoundException;
 
 $uri = $_SERVER['REQUEST_URI'];
@@ -30,6 +31,7 @@ $router
     ->get('/admin/recipes/[id:i]', AdminRecipe::class, 'admin.recipe.update')
     ->post('/admin/recipes/[id:i]', AdminRecipe::class, 'admin.recipe.update')
     ->post('/admin/recipes/delete/[id:i]', AdminRecipe::class, 'admin.recipe.update')
+    ->post('/api/stars', Stars::class, 'api.stars')
     ->get('/[c_slug:slug]', Category::class, 'category.show')
     ->get('/[c_slug:slug]/[r_slug:slug]', Recipe::class, 'recipe.show')
 ;
@@ -41,5 +43,5 @@ try {
         echo $response;
     }
 } catch (PageNotFoundException $e) {
-    echo $e->getMessage();
+    echo '404 error : ' . $e->getMessage();
 }

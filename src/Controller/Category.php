@@ -65,10 +65,12 @@ class Category extends Controller {
         $offset = ($page - 1) * $this->limit;
 
         $req = $this->pdo->prepare( 
-            'SELECT r.name, r.description, r.category_id, r.image, r.level, CONCAT(c.slug, \'/\', r.slug) AS r_slug
+            'SELECT CEIL(AVG(s.note)) note, r.id, r.name, r.description, r.category_id, r.image, r.level, CONCAT(c.slug, \'/\', r.slug) AS r_slug
             FROM recipes AS r
             INNER JOIN categories AS c ON r.category_id = c.id
+            LEFT JOIN stars s ON s.recipe_id = r.id
             WHERE r.category_id = :id
+            GROUP BY r.id
             ORDER BY r.id DESC
             LIMIT :limit
             OFFSET :offset'
