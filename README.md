@@ -10,9 +10,9 @@ Un blog de recettes de desserts
 
 Une démonstration de l'interface graphique est disponible à l'adresse : https://blog-recettes.vercel.app/. Les pages accessibles sont :
 - [l'accueil](https://blog-recettes.vercel.app/),
-- [la page recette](https://blog-recettes.vercel.app/recipe.html)
-- [la page catégorie](https://blog-recettes.vercel.app/category.html)
-- [la page admin](https://blog-recettes.vercel.app/admin.html)
+- [la page recette](https://blog-recettes.vercel.app/recipe.html),
+- [la page catégorie](https://blog-recettes.vercel.app/category.html),
+- [la page admin](https://blog-recettes.vercel.app/admin.html),
 - [la formulaire de création](https://blog-recettes.vercel.app/form.html)
 
 ## Installation
@@ -47,4 +47,4 @@ Une démonstration de l'interface graphique est disponible à l'adresse : https:
 - [X] Réaliser le visuel sur figma
 - [X] Intégrer la maquette en HTML - CSS - JS
 - [X] Configurer les fonctionnalités serveur
-- [ ] Bonus : permettre de noter les recettes
+- [X] Bonus : permettre de noter les recettes
