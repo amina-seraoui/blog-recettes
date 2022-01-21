@@ -41,10 +41,12 @@ class Recipe extends Controller {
     private function show()
     {
         $req = $this->pdo->prepare( 
-            'SELECT r.id, r.name, r.description, r.image, r.level, c.name AS category, CONCAT(c.slug, \'/\', r.slug) AS r_slug, c.slug AS c_slug
+            'SELECT CEIL(AVG(s.note)) note, r.id, r.name, r.description, r.image, r.level, c.name AS category, CONCAT(c.slug, \'/\', r.slug) AS r_slug, c.slug AS c_slug
             FROM recipes AS r
-            INNER JOIN categories AS c ON r.category_id = c.id
+            LEFT JOIN categories AS c ON r.category_id = c.id
+            LEFT JOIN stars s ON s.recipe_id = r.id
             WHERE NOT r.id = ?
+            GROUP BY r.id
             ORDER BY r.id DESC
             LIMIT 2'
         );

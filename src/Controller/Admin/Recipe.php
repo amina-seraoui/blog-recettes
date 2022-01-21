@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Controller;
+use GdImage;
 use PDO;
 
 class Recipe extends Controller {
@@ -61,8 +62,8 @@ class Recipe extends Controller {
 
                 $req = $this->pdo->prepare(
                     'INSERT INTO recipes
-                    (name, slug, description, level, image, prep_time, cook_time, ingredients, preparation, category_id, author_id)
-                    VALUES (:name, :slug, :description, :level, :image, :prep_time, :cook_time, :ingredients, :preparation, :category_id, :author_id)'
+                    (name, slug, description, level, image, prep_time, cook_time, ingredients, preparation, category_id, author_id, created_at)
+                    VALUES (:name, :slug, :description, :level, :image, :prep_time, :cook_time, :ingredients, :preparation, :category_id, :author_id, NOW())'
                 );
                 $req->bindParam('name', $_POST['name'], \PDO::PARAM_STR);
                 $req->bindParam('slug', $slug, \PDO::PARAM_STR);
@@ -130,12 +131,12 @@ class Recipe extends Controller {
 
                 if ($success) {
                     $s = true;
-                    if ($ext) {
+                    if ($ext) { // Si une image est uploadé
                         $s = $this->removeImage($item['image']);
                         $this->createImage($_FILES['image'], $image);
                     }
         
-                    header('Location: /admin/recipes?success=' . (string)$s);
+                    header('Location: /admin/recipes?success=' . ($s ? 'ok' : 'not-ok'));
                 } else {
                     $item = [...$_POST, $_FILES];
                 }
@@ -171,29 +172,31 @@ class Recipe extends Controller {
         if (in_array($file['type'], $arrayType)) {
             $success = move_uploaded_file($file['tmp_name'], './uploads/img/' . $name);
             if ($success) { //create thumb
-                $src = './uploads/img/' . $name;
-                [$width, $height] = getimagesize($src);
 
-                $maxWidth = 500;
-                $maxHeight = 500;
-
-                $ratio = $width / $height;
-                
-                if ($maxWidth / $maxHeight > $ratio) {
-                    $maxWidth = $maxHeight * $ratio;
-                } else {
-                    $maxHeight = $maxWidth * $ratio; 
-                }
-
-                $img = imagecreatefromjpeg($src);
-                $thumb = imagecreatetruecolor($maxWidth, $maxHeight);
-
-                imagecopyresized($thumb, $img, 0, 0, 0, 0, $maxWidth, $maxHeight, $width, $height);
-                
+                $thumb = $this->createThumb('./uploads/img/' . $name, 500, 300);
                 return imagejpeg($thumb, './uploads/img/thumbs/' . $name);
             }
         }
         return false;
+    }
+
+    private function createThumb(string $src, int $width, int $height): GdImage
+    {
+        [$orgW, $orgH] = getimagesize($src);
+        
+        $thumb = imagecreatetruecolor($width, $height);
+        $original = imagecreatefromjpeg($src);
+        
+        $ratio = min($orgW / $width, $orgH / $height);
+
+        $w = $orgW / $ratio;
+        $h = $orgH / $ratio;
+
+        $x = (int)(($w - $width) / 2);
+        $y = (int)(($h - $height) / 2);
+
+        imagecopyresampled($thumb, $original, -$x, -$y, 0, 0, $w, $h, $orgW, $orgH);
+        return $thumb;
     }
 
     private function removeImage(string $name): bool
