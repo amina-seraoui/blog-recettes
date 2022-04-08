@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Controller\Controller;
 use GdImage;
-use PDO;
 
 class Recipe extends Controller {
     private int $limit = 9;

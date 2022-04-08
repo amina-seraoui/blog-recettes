@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Router\Route;
-
 class Home extends Controller {
 
     public function __invoke(): string
