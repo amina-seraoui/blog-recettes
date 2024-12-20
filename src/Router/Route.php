@@ -15,9 +15,10 @@ class Route
     private array $matches = [];
 
     /**
+     * @param string $path
      * @param callable $callable
      */
-    public function __construct(string $path, private $callable)
+    public function __construct(private string $path, private $callable)
     {
         $this->path = trim($path, '/');
     }

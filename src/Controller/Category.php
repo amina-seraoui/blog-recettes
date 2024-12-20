@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use PDO;
-
 class Category extends Controller {
     private ?object $category = null;
     private int $limit = 9;

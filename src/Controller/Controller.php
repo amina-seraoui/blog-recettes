@@ -26,10 +26,6 @@ abstract class Controller {
     protected function pageNotFound()
     {
         throw new PageNotFoundException();
-        // echo 'Erreur 404';
-        // http_response_code(404);
-        // // header('Location: 404');
-        // die();
     }
 
     protected function redirect(string $url)

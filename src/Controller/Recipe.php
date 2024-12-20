@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Router\PageNotFoundException;
-use PDO;
 
 class Recipe extends Controller {
     private string $slug;

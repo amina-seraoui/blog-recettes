@@ -1,8 +1,5 @@
 <?php
 
-use App\Controller\Home;
-use App\Router\Route;
-
 require_once '../vendor/autoload.php';
 
 //// IF DEV

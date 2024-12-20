@@ -9,8 +9,6 @@ use App\Controller\Admin\Recipe as AdminRecipe;
 use App\Controller\Api\Stars;
 use App\Router\PageNotFoundException;
 
-$uri = $_SERVER['REQUEST_URI'];
-
 // To move on appropriate file :
 define('LEVELS', [
     1 => 'facile',
@@ -42,6 +40,7 @@ try {
     if (is_string($response)) {
         echo $response;
     }
-} catch (PageNotFoundException $e) {
-    echo '404 error : ' . $e->getMessage();
+} catch (Exception $e) {
+    echo "Error  {$e->getCode()} : {$e->getMessage()}";
+    die();
 }
